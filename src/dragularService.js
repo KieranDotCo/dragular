@@ -579,7 +579,8 @@ var dragularService = function ($rootScope, $compile) {
         if(o.compileItemOnDrop){
             var scope = angular.element(target).scope();
             scope.$applyAsync(function(){
-                var content = $compile(shared.copy ? sourceItem.cloneNode(true) : sourceItem)(scope);                   
+                var contentEl = angular.copy(shared.copy ? sourceItem.cloneNode(true) : sourceItem);
+                var content = $compile(contentEl)(scope);                   
                 if(item.parentNode === target){
                     target.removeChild(item);
                 }
